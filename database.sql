@@ -71,3 +71,11 @@ CREATE TABLE RecipeTags (
     FOREIGN KEY (recipes_id) REFERENCES Recipes(recipes_id),
     FOREIGN KEY (tag_id) REFERENCES Tags(tag_id)
 );
+
+CREATE TABLE UserFollowers (
+    follower_id INT NOT NULL,
+    followed_user_id INT NOT NULL,
+    PRIMARY KEY (follower_id, followed_user_id),
+    FOREIGN KEY (follower_id) REFERENCES Users(user_id),
+    FOREIGN KEY (followed_user_id) REFERENCES Users(user_id)
+);
