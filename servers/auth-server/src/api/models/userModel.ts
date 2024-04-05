@@ -119,9 +119,7 @@ const getUserByUsername = async (
   }
 };
 
-const createUser = async (
-  user: Pick<User, 'username' | 'email' | 'password'>
-): Promise<UserWithNoPassword | null> => {
+const createUser = async (user: User): Promise<UserWithNoPassword | null> => {
   try {
     const result = await promisePool.execute<ResultSetHeader>(
       `

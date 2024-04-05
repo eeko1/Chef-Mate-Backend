@@ -64,7 +64,7 @@ const userGet = async (
 };
 
 const userPost = async (
-  req: Request<{}, {}, Pick<User, 'username' | 'email' | 'password'>>,
+  req: Request<{}, {}, User>,
   res: Response<UserResponse>,
   next: NextFunction
 ) => {

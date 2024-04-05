@@ -25,7 +25,7 @@ CREATE TABLE Recipes (
     media_type VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
     ingredients VARCHAR(255) NOT NULL,
-    description VARCHAT(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
