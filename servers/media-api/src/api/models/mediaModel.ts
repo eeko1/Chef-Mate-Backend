@@ -13,6 +13,7 @@ import {MessageResponse} from '@sharedTypes/MessageTypes';
 
 const fetchAllMedia = async (): Promise<MediaItem[] | null> => {
   const uploadPath = process.env.UPLOAD_URL;
+  console.log('uploadPath', uploadPath);
   try {
     const [rows] = await promisePool.execute<RowDataPacket[] & MediaItem[]>(
       `SELECT *,
@@ -72,6 +73,7 @@ const fetchMediaById = async (id: number): Promise<MediaItem | null> => {
                 FROM MediaItems
                 WHERE media_id=?`;
     const params = [uploadPath, uploadPath, id];
+    console.log(params);
     const [rows] = await promisePool.execute<RowDataPacket[] & MediaItem[]>(
       sql,
       params

@@ -37,6 +37,7 @@ const uploadFile = async (
         `${req.file.destination}/${filename}-thumb.png`
       );
     }
+    console.log('filename', req.file.filename);
 
     const response = {
       message: 'file uploaded',
