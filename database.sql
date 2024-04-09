@@ -24,6 +24,7 @@ CREATE TABLE MediaItems (
     filesize INT NOT NULL,
     media_type VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
+    ingredients VARCHAR(255),
     description VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)

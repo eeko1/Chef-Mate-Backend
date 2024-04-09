@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {NextFunction, Request, Response} from 'express';
 import {ErrorResponse} from '@sharedTypes/MessageTypes';
 import CustomError from './classes/CustomError';
