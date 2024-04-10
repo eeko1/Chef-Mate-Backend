@@ -20,6 +20,7 @@ type MediaItem = {
   filesize: number;
   media_type: string;
   title: string;
+  ingredients: string | null;
   description: string | null;
   created_at: Date | string;
   app_id: string;
