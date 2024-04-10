@@ -23,6 +23,7 @@ type MediaItem = {
   description: string | null;
   created_at: Date | string;
   app_id: string;
+  likes?: Like[];
 };
 
 type Comment = {

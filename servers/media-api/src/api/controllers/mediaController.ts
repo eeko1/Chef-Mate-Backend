@@ -9,6 +9,8 @@ import {
 import CustomError from '../../classes/CustomError';
 import {MediaResponse, MessageResponse} from '@sharedTypes/MessageTypes';
 import {MediaItem, TokenContent} from '@sharedTypes/DBTypes';
+import { likeListByMediaIdGet } from './likeController';
+import { fetchLikesByMediaId } from '../models/likeModel';
 
 const mediaListGet = async (
   req: Request,
@@ -21,6 +23,11 @@ const mediaListGet = async (
       const error = new CustomError('No media found', 404);
       next(error);
       return;
+    }
+    // Fetch likes for each media item
+    for (let item of media) {
+      const likes = await fetchLikesByMediaId(item.media_id);
+      item.likes = likes || undefined;
     }
     res.json(media);
   } catch (error) {
@@ -59,6 +66,9 @@ const mediaGet = async (
       next(error);
       return;
     }
+    // Fetch likes for the media item
+    const likes = await fetchLikesByMediaId(media.media_id);
+    media.likes = likes || undefined;
     res.json(media);
   } catch (error) {
     next(error);
