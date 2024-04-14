@@ -13,6 +13,10 @@ CREATE TABLE Users (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     user_level_id INT,
+    profile_picture_filename VARCHAR(255), -- Filename of the profile picture
+    profile_picture_filesize INT, -- Size of the profile picture file
+    profile_picture_media_type VARCHAR(50), -- Media type of the profile picture
+    profile_picture_url VARCHAR(255), -- URL of the profile picture
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_level_id) REFERENCES UserLevels(level_id)
 );
