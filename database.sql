@@ -81,3 +81,7 @@ CREATE TABLE UserFollowers (
 );
 
 INSERT INTO UserLevels (level_name) VALUES ('Admin'), ('User'), ('Guest');
+
+INSERT INTO Users (username, password, email, user_level_id) VALUES
+('Admin', '12345', 'admin@chefmate.com', 1);
+('Jantteri', '54321', 'jantteri@chefmate.com', 2);
