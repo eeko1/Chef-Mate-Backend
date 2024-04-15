@@ -24,6 +24,7 @@ CREATE TABLE MediaItems (
     filesize INT NOT NULL,
     media_type VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
+    ingredients VARCHAR(255),
     description VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
@@ -80,3 +81,7 @@ CREATE TABLE UserFollowers (
 );
 
 INSERT INTO UserLevels (level_name) VALUES ('Admin'), ('User'), ('Guest');
+
+INSERT INTO Users (username, password, email, user_level_id) VALUES
+('Admin', '12345', 'admin@chefmate.com', 1);
+('Jantteri', '54321', 'jantteri@chefmate.com', 2);

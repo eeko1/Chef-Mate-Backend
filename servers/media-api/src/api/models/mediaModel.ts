@@ -98,10 +98,10 @@ const fetchMediaById = async (id: number): Promise<MediaItem | null> => {
 const postMedia = async (
   media: Omit<MediaItem, 'media_id' | 'created_at'>
 ): Promise<MediaItem | null> => {
-  const {user_id, filename, filesize, media_type, title, description} = media;
-  const sql = `INSERT INTO MediaItems (user_id, filename, filesize, media_type, title, description)
-               VALUES (?, ?, ?, ?, ?, ?)`;
-  const params = [user_id, filename, filesize, media_type, title, description];
+  const {user_id, filename, filesize, media_type, title, ingredients, description} = media;
+  const sql = `INSERT INTO MediaItems (user_id, filename, filesize, media_type, title, ingredients, description)
+               VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  const params = [user_id, filename, filesize, media_type, title, ingredients, description];
   try {
     const result = await promisePool.execute<ResultSetHeader>(sql, params);
     console.log('result', result);
@@ -129,7 +129,7 @@ const postMedia = async (
  */
 
 const putMedia = async (
-  media: Pick<MediaItem, 'title' | 'description'>,
+  media: Pick<MediaItem, 'title' | 'description' | 'description'>,
   id: number
 ) => {
   try {
