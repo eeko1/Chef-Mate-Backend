@@ -1,6 +1,7 @@
-import { RowDataPacket } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 import promisePool from "../../lib/db"
 import { Like } from "@sharedTypes/DBTypes";
+import { MessageResponse } from "@sharedTypes/MessageTypes";
 
 // FETCH ALL LIKES
 const fetchAllLikes = async (): Promise<Like[] | null> => {
@@ -31,6 +32,35 @@ const fetchLikesByMediaId = async (media_id: number): Promise<Like[] | null> => 
   }
 }
 
+// POST LIKE
+const postLike = async (
+  media_id: number,
+  user_id: number
+): Promise<MessageResponse | null> => {
+  try {
+    const [likeExists] = await promisePool.execute<RowDataPacket[] & Like[]>(
+      'SELECT * FROM Likes WHERE media_id = ? AND user_id = ?',
+      [media_id, user_id]
+    );
+    if (likeExists.length !== 0) {
+      return null;
+    }
+
+    const [likeResult] = await promisePool.execute<ResultSetHeader>(
+      'INSERT INTO Likes (user_id, media_id) VALUES (?, ?)',
+      [user_id, media_id]
+    );
+    if (likeResult.affectedRows === 0) {
+      return null;
+    }
+
+    return {message: 'Like added'};
+  } catch (e) {
+    console.error('postLike error', (e as Error).message);
+    throw new Error((e as Error).message);
+  }
+};
+
 export {
-  fetchAllLikes, fetchLikesByMediaId
+  fetchAllLikes, fetchLikesByMediaId, postLike
 };
