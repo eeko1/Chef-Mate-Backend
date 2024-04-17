@@ -3,6 +3,7 @@ import {
   likeListGet,
   likeListByMediaIdGet,
   likePost,
+  likeDelete
 } from '../controllers/likeController';
 import {authenticate, validationErrors} from '../../middlewares';
 import {body} from 'express-validator';
@@ -20,5 +21,9 @@ router
   );
 
 router.route('/bymedia/:media_id').get(likeListByMediaIdGet);
+
+router
+  .route('/:media_id')
+  .delete(authenticate, likeDelete);
 
 export default router;

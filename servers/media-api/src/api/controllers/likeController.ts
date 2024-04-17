@@ -1,5 +1,5 @@
 import { NextFunction } from "express";
-import { fetchAllLikes, fetchLikesByMediaId, postLike } from "../models/likeModel";
+import { fetchAllLikes, fetchLikesByMediaId, postLike, deleteLike } from "../models/likeModel";
 import CustomError from "../../classes/CustomError";
 import { Like, TokenContent } from "@sharedTypes/DBTypes";
 import { Request, Response } from "express";
@@ -58,4 +58,25 @@ const likePost = async (
   }
 };
 
-export { likeListGet, likeListByMediaIdGet, likePost };
+// DELETE LIKE
+const likeDelete = async (
+  req: Request<{media_id: string, user_id: string}>,
+  res: Response<MessageResponse, {user: TokenContent}>,
+  next: NextFunction
+) => {
+  try {
+    const result = await deleteLike(
+      Number(req.params.media_id),
+      res.locals.user.user_id
+    );
+    if (result) {
+      res.json(result);
+      return;
+    }
+    next(new CustomError('Like not deleted', 500));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { likeListGet, likeListByMediaIdGet, likePost, likeDelete };

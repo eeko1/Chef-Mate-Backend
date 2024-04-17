@@ -61,6 +61,35 @@ const postLike = async (
   }
 };
 
+// DELETE LIKE
+const deleteLike = async (
+  media_id: number,
+  user_id: number
+): Promise<MessageResponse | null> => {
+  try {
+    const [likeExists] = await promisePool.execute<RowDataPacket[] & Like[]>(
+      'SELECT * FROM Likes WHERE media_id = ? AND user_id = ?',
+      [media_id, user_id]
+    );
+    if (likeExists.length === 0) {
+      return null;
+    }
+
+    const [deleteResult] = await promisePool.execute<ResultSetHeader>(
+      'DELETE FROM Likes WHERE user_id = ? AND media_id = ?',
+      [user_id, media_id]
+    );
+    if (deleteResult.affectedRows === 0) {
+      return null;
+    }
+
+    return {message: 'Like deleted'};
+  } catch (e) {
+    console.error('deleteLike error', (e as Error).message);
+    throw new Error((e as Error).message);
+  }
+};
+
 export {
-  fetchAllLikes, fetchLikesByMediaId, postLike
+  fetchAllLikes, fetchLikesByMediaId, postLike, deleteLike
 };
