@@ -2,11 +2,8 @@ import express from 'express';
 import {
   likeListGet,
   likeListByMediaIdGet,
-  likeListByUserIdGet,
   likePost,
-  likeDelete,
-  likeCountByMediaIdGet,
-  likeByMediaIdAndUserIdGet,
+  likeDelete
 } from '../controllers/likeController';
 import {authenticate, validationErrors} from '../../middlewares';
 import {body} from 'express-validator';
@@ -26,13 +23,7 @@ router
 router.route('/bymedia/:media_id').get(likeListByMediaIdGet);
 
 router
-  .route('/bymedia/user/:media_id')
-  .get(authenticate, likeByMediaIdAndUserIdGet);
-
-router.route('/byuser/:id').get(authenticate, likeListByUserIdGet);
-
-router.route('/count/:id').get(likeCountByMediaIdGet);
-
-router.route('/:id').delete(authenticate, likeDelete);
+  .route('/:media_id')
+  .delete(authenticate, likeDelete);
 
 export default router;
