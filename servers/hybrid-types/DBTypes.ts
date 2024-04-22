@@ -12,6 +12,13 @@ type User = {
   created_at: Date | string;
 };
 
+type UserFollow =  {
+  follower_id: number,
+  followed_id : number,
+  user_id: number,
+  created_at: Date | string 
+}
+
 type MediaItem = {
   media_id: number;
   user_id: number;
@@ -48,6 +55,13 @@ type Rating = {
   rating_value: number;
   created_at: Date;
 };
+
+type UserLike = {
+  like_id: number;
+  liked_user_id: number;
+  liking_user_id: number;
+  created_at: Date;
+}
 
 type Tag = {
   tag_id: number;
@@ -101,10 +115,12 @@ type FileInfo = {
 export type {
   UserLevel,
   User,
+  UserFollow,
   MediaItem,
   Comment,
   Like,
   Rating,
+  UserLike,
   Tag,
   MediaItemTag,
   TagResult,
