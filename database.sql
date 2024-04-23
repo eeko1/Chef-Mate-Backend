@@ -13,11 +13,8 @@ CREATE TABLE Users (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     user_level_id INT,
-   -- profile_picture_filename VARCHAR(255), -- Filename of the profile picture
-   -- profile_picture_filesize INT, -- Size of the profile picture file
-   -- profile_picture_media_type VARCHAR(50), -- Media type of the profile picture
-    profile_picture_url VARCHAR(255), -- URL of the profile picture
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    profile_picture_url VARCHAR(255),
     FOREIGN KEY (user_level_id) REFERENCES UserLevels(level_id)
 );
 
@@ -28,6 +25,7 @@ CREATE TABLE MediaItems (
     filesize INT NOT NULL,
     media_type VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
+    ingredients VARCHAR(255),
     description VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
@@ -84,3 +82,5 @@ CREATE TABLE UserFollowers (
 );
 
 INSERT INTO UserLevels (level_name) VALUES ('Admin'), ('User'), ('Guest');
+
+
