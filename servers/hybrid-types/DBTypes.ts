@@ -12,6 +12,13 @@ type User = {
   created_at: Date | string;
 };
 
+type UserFollow =  {
+  userfollow_id: number,
+  follower_id: number,
+  followed_id : number,
+  created_at: Date | string 
+}
+
 type MediaItem = {
   media_id: number;
   user_id: number;
@@ -93,6 +100,8 @@ type TokenContent = Pick<User, 'user_id'> & Pick<UserLevel, 'level_name'>;
 
 type MediaItemWithOwner = MediaItem & Pick<User, 'username'>;
 
+type UserIdWithFollow = User & Pick<UserFollow, 'follower_id' | 'followed_id'>;
+
 // for upload server
 type FileInfo = {
   filename: string;
@@ -102,6 +111,7 @@ type FileInfo = {
 export type {
   UserLevel,
   User,
+  UserFollow,
   MediaItem,
   Comment,
   Like,
@@ -115,5 +125,6 @@ export type {
   UserWithNoPassword,
   TokenContent,
   MediaItemWithOwner,
+  UserIdWithFollow,
   FileInfo,
 };

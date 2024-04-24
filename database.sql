@@ -17,6 +17,15 @@ CREATE TABLE Users (
     FOREIGN KEY (user_level_id) REFERENCES UserLevels(level_id)
 );
 
+CREATE TABLE UserFollow (
+    userfollow_id INT AUTO_INCREMENT PRIMARY KEY,
+    follower_id INT NOT NULL,
+    followed_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (follower_id) REFERENCES Users(user_id),
+    FOREIGN KEY (followed_id) REFERENCES Users(user_id)
+);
+
 CREATE TABLE MediaItems (
     media_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -72,14 +81,4 @@ CREATE TABLE MediaItemTags (
     FOREIGN KEY (tag_id) REFERENCES Tags(tag_id)
 );
 
-CREATE TABLE UserFollowers (
-    follower_id INT NOT NULL,
-    followed_user_id INT NOT NULL,
-    PRIMARY KEY (follower_id, followed_user_id),
-    FOREIGN KEY (follower_id) REFERENCES Users(user_id),
-    FOREIGN KEY (followed_user_id) REFERENCES Users(user_id)
-);
-
 INSERT INTO UserLevels (level_name) VALUES ('Admin'), ('User'), ('Guest');
-
-
