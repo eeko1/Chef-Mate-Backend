@@ -18,10 +18,10 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE UserFollow (
+    userfollow_id INT AUTO_INCREMENT PRIMARY KEY,
     follower_id INT NOT NULL,
     followed_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (follower_id, followed_id),
     FOREIGN KEY (follower_id) REFERENCES Users(user_id),
     FOREIGN KEY (followed_id) REFERENCES Users(user_id)
 );

@@ -13,6 +13,7 @@ type User = {
 };
 
 type UserFollow =  {
+  userfollow_id: number,
   follower_id: number,
   followed_id : number,
   user_id: number,
@@ -106,6 +107,8 @@ type TokenContent = Pick<User, 'user_id'> & Pick<UserLevel, 'level_name'>;
 
 type MediaItemWithOwner = MediaItem & Pick<User, 'username'>;
 
+type UserIdWithFollow = User & Pick<UserFollow, 'follower_id' | 'followed_id'>;
+
 // for upload server
 type FileInfo = {
   filename: string;
@@ -130,5 +133,6 @@ export type {
   UserWithNoPassword,
   TokenContent,
   MediaItemWithOwner,
+  UserIdWithFollow,
   FileInfo,
 };
