@@ -3,6 +3,8 @@ import {
   fetchAllFollow,
   postUserFollow,
   deleteUserFollow,
+  getFollowerCountByFollowedId,
+  getUserFollow,
 } from '../models/followModel';
 import CustomError from '../../classes/CustomError';
 import {UserFollow, TokenContent} from '@sharedTypes/DBTypes';
@@ -72,4 +74,45 @@ const followDelete = async (
   }
 };
 
-export {followListGet, followUser, followDelete};
+const followCountGetById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const followed_id = Number(req.params.followed_id);
+    const count = await getFollowerCountByFollowedId(followed_id);
+    if (count) {
+      res.json(count);
+      return;
+    }
+    next(new CustomError('No follow found', 404));
+  } catch (error) {
+    next(error);
+  }
+}
+
+const getFollowByUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const followed_id = Number(req.params.followed_id);
+    const follower_id = res.locals.user.user_id;
+    console.log('getFollowByUser', follower_id, followed_id);
+    const follows = await getUserFollow(follower_id, followed_id);
+    if (follows !== null) {
+      console.log('follows', follows);
+      res.json(follows);
+      return;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    next(new CustomError('No follow found', 404));
+  }
+}
+
+
+export {followListGet, followUser, followDelete, followCountGetById, getFollowByUser};

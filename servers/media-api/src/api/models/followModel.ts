@@ -23,6 +23,10 @@ const postUserFollow = async (
   user_id: number,
 ): Promise<MessageResponse | null> => {
   try {
+    // check if a user tries to follow themselves
+    if (followed_id === user_id) {
+      return null;
+    }
     const [followExist] = await promisePool.execute<RowDataPacket[] & UserFollow[]>(
       'SELECT * FROM UserFollow WHERE follower_id = ? AND followed_id = ?',
       [user_id, followed_id]
@@ -76,8 +80,45 @@ const deleteUserFollow = async (
   }
 }
 
+const getFollowerCountByFollowedId = async (
+  followed_id: number,
+): Promise<number> => {
+  try {
+    const [followCount] = await promisePool.execute<RowDataPacket[] & UserFollow[]>(
+      'SELECT COUNT(*) AS count FROM UserFollow WHERE followed_id = ?',
+      [followed_id]
+    );
+    console.log('followCount', followCount[0].count);
+    return followCount[0].count;
+  } catch (e) {
+    console.error('getFollowerCountByFollowedId error', (e as Error).message);
+    throw new Error('getFollowerCountByFollowedId error');
+  }
+};
+
+const getUserFollow = async (
+  follower_id: number,
+  followed_id: number,
+): Promise<UserFollow | null> => {
+  try {
+    const [rows] = await promisePool.execute<RowDataPacket[] & UserFollow[]>(
+      'SELECT * FROM UserFollow WHERE follower_id = ? AND followed_id = ?',
+      [follower_id, followed_id]
+    );
+    if (rows.length === 0) {
+      return null;
+    }
+    return rows[0];
+  } catch (e) {
+    console.error('getUserFollow error', (e as Error).message);
+    throw new Error('getUserFollow error');
+  }
+};
+
 export {
   fetchAllFollow,
   postUserFollow,
   deleteUserFollow,
+  getFollowerCountByFollowedId,
+  getUserFollow,
 };
