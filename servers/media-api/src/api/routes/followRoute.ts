@@ -1,5 +1,5 @@
 import express from "express";
-import { followListGet, followUser, followDelete, followCountGetById, getFollowByUser } from "../controllers/followController";
+import { followListGet, followUser, followDelete, followCountGetById, getFollowByUser, followingCountGetById } from "../controllers/followController";
 import { authenticate, validationErrors } from "../../middlewares";
 import { body } from "express-validator";
 
@@ -18,6 +18,7 @@ router
   router.get("/count/user/:followed_id",
   authenticate, getFollowByUser);
   router.get("/count/:followed_id", followCountGetById);
+  router.get("/count/following/:follower_id", followingCountGetById);
 router
   .route("/:followed_id")
   .delete(

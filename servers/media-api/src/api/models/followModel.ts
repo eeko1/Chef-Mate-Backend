@@ -96,6 +96,23 @@ const getFollowerCountByFollowedId = async (
   }
 };
 
+const getFollowingCountByFollowerId = async (
+  follower_id: number,
+): Promise<number> => {
+  try {
+    const [followCount] = await promisePool.execute<RowDataPacket[] & UserFollow[]>(
+      'SELECT COUNT(*) AS count FROM UserFollow WHERE follower_id = ?',
+      [follower_id]
+    );
+    console.log('followCount', followCount[0].count);
+    return followCount[0].count;
+  } catch (e) {
+    console.error('getFollowingCountByFollowerId error', (e as Error).message);
+    throw new Error('getFollowingCountByFollowerId error');
+  }
+};
+
+
 const getUserFollow = async (
   follower_id: number,
   followed_id: number,
@@ -121,4 +138,5 @@ export {
   deleteUserFollow,
   getFollowerCountByFollowedId,
   getUserFollow,
+  getFollowingCountByFollowerId
 };
