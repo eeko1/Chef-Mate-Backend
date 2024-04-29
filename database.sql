@@ -14,6 +14,7 @@ CREATE TABLE Users (
     email VARCHAR(100) NOT NULL UNIQUE,
     user_level_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    profile_picture_url VARCHAR(255),
     FOREIGN KEY (user_level_id) REFERENCES UserLevels(level_id)
 );
 
