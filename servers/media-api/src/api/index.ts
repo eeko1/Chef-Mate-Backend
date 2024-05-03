@@ -5,6 +5,7 @@ import tagRoute from './routes/tagRoute';
 import likeRoute from './routes/likeRoute';
 import ratingRoute from './routes/ratingRoute';
 import followRoute from './routes/followRoute';
+import commentRoute from './routes/commentRoute';
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.use('/tags', tagRoute);
 router.use('/likes', likeRoute);
 router.use('/ratings', ratingRoute);
 router.use('/follows', followRoute);
+router.use('/comments', commentRoute);
 
 export default router;
