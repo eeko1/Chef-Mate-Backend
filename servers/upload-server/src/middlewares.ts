@@ -69,7 +69,10 @@ const makeThumbnail = async (
       return;
     }
 
-    const src = path.join(__dirname, '..', 'uploads', req.file.filename);
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    const dots = isDevelopment ? '../' : '../../../';
+
+    const src = path.join(__dirname, `${dots}uploads/`, req.file.filename);
     console.log(src);
 
     if (!req.file.mimetype.includes('video')) {
