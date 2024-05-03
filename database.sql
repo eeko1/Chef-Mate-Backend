@@ -69,17 +69,4 @@ CREATE TABLE Ratings (
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
-CREATE TABLE Tags (
-    tag_id INT AUTO_INCREMENT PRIMARY KEY,
-    tag_name VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE MediaItemTags (
-    media_id INT NOT NULL,
-    tag_id INT NOT NULL,
-    PRIMARY KEY (media_id, tag_id),
-    FOREIGN KEY (media_id) REFERENCES MediaItems(media_id),
-    FOREIGN KEY (tag_id) REFERENCES Tags(tag_id)
-);
-
 INSERT INTO UserLevels (level_name) VALUES ('Admin'), ('User'), ('Guest');
