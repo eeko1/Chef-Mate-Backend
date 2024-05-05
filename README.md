@@ -17,9 +17,9 @@ Sovellus myös luo yhteisön ympäristötietoisille kuluttajille, jossa he pää
     <th>Upload</th>
   </tr>
   <tr>
-    <td><img src="./assets/screenshots/Chefmate-homepage.jpg" alt="Homepage" width="200"/></td>
-    <td><img src="./assets/screenshots/Chefmate-profilepage.jpg" alt="Profile Page" width="200"/></td>
-    <td><img src="./assets/screenshots/Chefmate-uploadpage.jpg" alt="Upload Page" width="200"/></td>
+    <td><img src="./assets/Chefmate-homepage.jpg" alt="Homepage" width="200"/></td>
+    <td><img src="./assets/Chefmate-profilepage.jpg" alt="Profile Page" width="200"/></td>
+    <td><img src="./assets/Chefmate-uploadpage.jpg" alt="Upload Page" width="200"/></td>
   </tr>
 </table>
 
@@ -67,7 +67,7 @@ Linkit sovelluksen back-end servereihin, jotka pyörivät Metropolian serverill�
 
 ## Front-end käyttöönotto
 
-Lataa Expo Go sovellus puhelimeesi. Varmista, että olet samassa netissä kuin laite, jossa sovellus pyörii. Skanna QR-koodi. 
+Lataa Expo Go sovellus puhelimeesi. Varmista, että olet samassa netissä kuin laite, jossa sovellus pyörii. Skanna QR-koodi.
 
 ## Api Docs
 
