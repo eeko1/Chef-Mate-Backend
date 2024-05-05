@@ -17,8 +17,47 @@ const fileFilter = (
 const upload = multer({dest: './uploads/', fileFilter});
 const router = express.Router();
 
-// TODO: validation
+/**
+ * @api {post} /upload Upload a file
+ * @apiName UploadFile
+ * @apiGroup File
+ *
+ * @apiHeader {String} Authorization Bearer token
+ *
+ * @apiParam {File} file File to upload
+ *
+ * @apiSuccess {String} message File uploaded successfully
+ * @apiSuccess {String} url URL of the uploaded file
+ * @apiSuccess {String} thumbnail URL of the thumbnail
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ * "message": "File uploaded successfully",
+ * "url": "http://localhost:3000/uploads/1612345678900-filename.jpg",
+ * "thumbnail": "http://localhost:3000/uploads/thumbnails/1612345678900-filename.jpg"
+ * }
+ *
+ */
 
+/**
+ * @api {delete} /delete/:filename Delete a file
+ * @apiName DeleteFile
+ * @apiGroup File
+ *
+ * @apiHeader {String} Authorization Bearer token
+ *
+ * @apiParam {String} filename Filename to delete
+ *
+ * @apiSuccess {String} message File deleted successfully
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ * "message": "File deleted successfully"
+ * }
+ *
+ * */
 router
   .route('/upload')
   .post(authenticate, upload.single('file'), makeThumbnail, uploadFile);

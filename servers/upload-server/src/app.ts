@@ -21,6 +21,8 @@ app.use(express.json());
 
 app.use('/uploads', express.static('uploads'));
 
+app.use(express.static('public'));
+
 app.get<{}, MessageResponse>('/', (req, res) => {
   res.json({
     message: 'API location: api/v1',
