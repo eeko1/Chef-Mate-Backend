@@ -21,5 +21,6 @@ router.use('/likes', likeRoute);
 router.use('/ratings', ratingRoute);
 router.use('/follows', followRoute);
 router.use('/comments', commentRoute);
+router.use('/docs', express.static('docs'));
 
 export default router;

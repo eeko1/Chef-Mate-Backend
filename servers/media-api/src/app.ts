@@ -13,6 +13,8 @@ app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use('/docs', express.static('docs'));
+app.use(express.static('public'));
 
 app.get('/', (req: Request, res: Response) => {
   res.json({

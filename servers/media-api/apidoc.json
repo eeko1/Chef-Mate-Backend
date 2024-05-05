@@ -1,0 +1,17 @@
+{
+  "name": "Chef Mate Media API",
+  "version": "1.0.0",
+  "description": "API documentation for Chef Mate Media API",
+  "title": "Chef Mate Media API Documentation",
+  "url": "/api/v1",
+  "header": {
+    "title": "Chef Mate Media API Documentation",
+    "content": "<p>This is my Media API Documentation for Chef Mate</p>"
+  },
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  },
+  "exclude": ["node_modules/", "public/"],
+  "files": ["src/**/*.js"]
+}

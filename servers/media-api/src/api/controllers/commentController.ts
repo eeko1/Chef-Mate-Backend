@@ -13,6 +13,37 @@ import CustomError from '../../classes/CustomError';
 import {MessageResponse} from '@sharedTypes/MessageTypes';
 import {Comment, TokenContent} from '@sharedTypes/DBTypes';
 
+
+/**
+ * @api {get} /comments Request all comments
+ * @apiName GetComments
+ * @apiGroup Comments
+ *
+ * @apiSuccess {Object[]} comments List of comments.
+ * @apiSuccess {Number} comments.id Comment id.
+ * @apiSuccess {String} comments.comment_text Comment text.
+ * @apiSuccess {Number} comments.media_id Media id associated with the comment.
+ * @apiSuccess {Number} comments.user_id User id who posted the comment.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "id": 1,
+ *         "comment_text": "This is a comment",
+ *         "media_id": 1,
+ *         "user_id": 1
+ *       }
+ *     ]
+ *
+ * @apiError NoCommentsFound No comments were found.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "NoCommentsFound"
+ *     }
+ */
 // GET ALL COMMENTS
 const commentListGet = async (
   req: Request,
