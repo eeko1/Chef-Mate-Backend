@@ -1,0 +1,13 @@
+{
+  "name": "Chef Mate, Media API server",
+  "version": "1.0.0",
+  "description": "For Metropolia UAS Monialustaprojekti course",
+  "title": "Media API server",
+  "url": "/api/v1",
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  },
+  "exclude": ["node_modules/", "public/"],
+  "files": ["src/**/*.ts"]
+}

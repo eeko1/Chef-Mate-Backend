@@ -20,6 +20,9 @@ app.get('/', (req: Request, res: Response) => {
   });
 });
 
+// public folder for apidocs
+app.use(express.static('public'));
+
 app.use('/api/v1', api);
 
 app.use(notFound);
