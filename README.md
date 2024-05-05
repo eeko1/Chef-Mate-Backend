@@ -94,6 +94,12 @@ Linkit sovelluksen api docseihin
 
 [Linkki](https://oblador.github.io/react-native-vector-icons/)
 
+## Tiedossa olevat bugit ja ongelmat
+
+- Tykkäykset ja tähtiarvioinnit eivät päivity home näkymään, kun yksittäisen postauksen näkymästä vaihtaa takaisin home näkymään, jos on yksittäisessä näkymässä tykännyt tai arvioinut postauksen. Tykkäys silti päivittyy tietokantaan ja päivittyy myös home näytölle sovelluksen ladatessa uudestaan.
+
+- "Instructions" -kohta uploadauksessa ei mahdollista tarpeeksi pitkää kuvausta. Liian pitkästä "instructions" -osuudesta tulee error.
+
 ## Tekijät
 
 Sovelluksen kehittäjien Github käyttäjät
